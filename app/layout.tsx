@@ -5,6 +5,7 @@ import './globals.css';
 import { getKorivaConfig, buildCssVars } from '@/lib/koriva-config';
 import { SiteDataProvider } from '@/components/SiteDataProvider';
 
+import { KorivaLivePreview } from '@/components/KorivaLivePreview';
 const barlowCondensed = Barlow_Condensed({
   subsets: ['latin'],
   weight: ['700', '800', '900'],
@@ -51,6 +52,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" className={`${barlowCondensed.variable} ${barlow.variable}`} style={cssVars}>
       <body className="font-body antialiased">
+        <KorivaLivePreview />
         <SiteDataProvider config={config}>
           {children}
         </SiteDataProvider>
