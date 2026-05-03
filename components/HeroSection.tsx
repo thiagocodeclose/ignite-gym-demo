@@ -1,10 +1,45 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Reveal } from '@/components/Reveal';
 import { studio } from '@/lib/site-data';
+import { useKorivaElement } from '@/hooks/useKorivaElement';
+import { useSiteData } from '@/components/SiteDataProvider';
 
 export function HeroSection() {
-  return (
+  
+  const siteData = typeof useSiteData === 'function' ? useSiteData() : null;
+
+  const eyebrow = useKorivaElement('hero_eyebrow',
+    { content: 'IGNITE', visible: true },
+    { section: 'Hero', label: 'Eyebrow', type: 'eyebrow' });
+
+  const hl1 = useKorivaElement('hero_headline_1',
+    { content: 'IGNITE', visible: true },
+    { section: 'Hero', label: 'Headline', type: 'text' });
+
+  const tagline = useKorivaElement('hero_headline_2',
+    { content: 'Train Like It Matters.', visible: true },
+    { section: 'Hero', label: 'Tagline', type: 'text' });
+
+  const subtitle = useKorivaElement('hero_subtitle',
+    { content: 'Chicago's most intense HIIT and bootcamp gym.', visible: true },
+    { section: 'Hero', label: 'Description', type: 'text' });
+
+  const cta1 = useKorivaElement('hero_cta_primary',
+    { content: 'Book a Class', visible: true },
+    { section: 'Hero', label: 'CTA Primary', type: 'button' });
+
+  const cta2 = useKorivaElement('hero_cta_secondary',
+    { content: 'See the Training', visible: true },
+    { section: 'Hero', label: 'CTA Secondary', type: 'button' });
+
+  const heroBg = useKorivaElement('hero_bg',
+    { content: '', mediaType: 'image', visible: true },
+    { section: 'Hero', label: 'Background Image', type: 'image' });
+
+return (
     <section className="relative min-h-screen flex items-end overflow-hidden" style={{ backgroundColor: 'var(--bg)' }}>
       {/* Background image */}
       <div className="absolute inset-0">
