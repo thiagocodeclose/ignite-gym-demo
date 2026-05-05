@@ -1,4 +1,5 @@
 'use client';
+import { useState, useEffect } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -24,7 +25,7 @@ export function HeroSection() {
     { section: 'Hero', label: 'Tagline', type: 'text' });
 
   const subtitle = useKorivaElement('hero_subtitle',
-    { content: 'Chicago's most intense HIIT and bootcamp gym.', visible: true },
+    { content: "Chicago's most intense HIIT and bootcamp gym.", visible: true },
     { section: 'Hero', label: 'Description', type: 'text' });
 
   const cta1 = useKorivaElement('hero_cta_primary',
@@ -38,6 +39,11 @@ export function HeroSection() {
   const heroBg = useKorivaElement('hero_bg',
     { content: '', mediaType: 'image', visible: true },
     { section: 'Hero', label: 'Background Image', type: 'image' });
+
+  const [bookingIntegration, setBookingIntegration] = useState<{
+    booking_enabled: boolean;
+    booking_url: string;
+  }>({ booking_enabled: false, booking_url: '#' });
 
   useEffect(() => {
     function handleBrand(e: Event) {
@@ -108,7 +114,7 @@ return (
           </Reveal>
           <Reveal delay={0.2}>
             <div className="flex flex-wrap gap-4">
-              <Link href="{bookingIntegration.booking_enabled ? bookingIntegration.booking_url : \'#classes\'}" className="btn-red">
+              <Link href={bookingIntegration.booking_enabled ? bookingIntegration.booking_url : '#classes'} className="btn-red">
                 Book a Class
               </Link>
               <Link href="#about" className="btn-ghost-white">
