@@ -39,6 +39,21 @@ export function HeroSection() {
     { content: '', mediaType: 'image', visible: true },
     { section: 'Hero', label: 'Background Image', type: 'image' });
 
+  useEffect(() => {
+    function handleBrand(e: Event) {
+      const d = (e as CustomEvent).detail as Record<string, unknown>;
+      if (d.booking_enabled !== undefined || d.gym_slug !== undefined) {
+        const slug = (d.gym_slug as string) || '';
+        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.codegyms.com';
+        setBookingIntegration({
+          booking_enabled: !!(d.booking_enabled),
+          booking_url: slug ? `${baseUrl}/schedule/${slug}` : '#',
+        });
+      }
+    }
+    window.addEventListener('koriva:brand', handleBrand);
+    return () => window.removeEventListener('koriva:brand', handleBrand);
+  }, []);
 return (
     <section className="relative min-h-screen flex items-end overflow-hidden" style={{ backgroundColor: 'var(--bg)' }}>
       {/* Background image */}
@@ -93,7 +108,7 @@ return (
           </Reveal>
           <Reveal delay={0.2}>
             <div className="flex flex-wrap gap-4">
-              <Link href="#classes" className="btn-red">
+              <Link href="{bookingIntegration.booking_enabled ? bookingIntegration.booking_url : \'#classes\'}" className="btn-red">
                 Book a Class
               </Link>
               <Link href="#about" className="btn-ghost-white">
