@@ -119,22 +119,24 @@ export function HeroSection() {
           <Reveal delay={0.05}>
             <h1
               className="font-heading text-white leading-none mb-6"
+              {...hl1.editProps}
               style={{
-                fontSize: "clamp(5rem, 16vw, 18rem)",
-                fontWeight: 900,
+                fontSize: hl1.fontSize ? `${hl1.fontSize}px` : "clamp(5rem, 16vw, 18rem)",
+                fontWeight: hl1.fontWeight ? Number(hl1.fontWeight) : 900,
                 letterSpacing: "-0.02em",
                 lineHeight: 0.88,
               }}
             >
-              IGNITE
+              {hl1.content || "IGNITE"}
             </h1>
           </Reveal>
           <Reveal delay={0.12}>
             <p
               className="font-heading italic uppercase mb-10"
+              {...tagline.editProps}
               style={{
-                fontSize: "clamp(1.4rem, 4vw, 4rem)",
-                fontWeight: 700,
+                fontSize: tagline.fontSize ? `${tagline.fontSize}px` : "clamp(1.4rem, 4vw, 4rem)",
+                fontWeight: tagline.fontWeight ? Number(tagline.fontWeight) : 700,
                 color: "var(--red)",
                 letterSpacing: "0.04em",
               }}
@@ -151,11 +153,12 @@ export function HeroSection() {
                     : "#classes"
                 }
                 className="btn-red"
+                {...cta1.editProps}
               >
-                Book a Class
+                {cta1.content || "Book a Class"}
               </Link>
-              <Link href="#about" className="btn-ghost-white">
-                See the Training
+              <Link href="#about" className="btn-ghost-white" {...cta2.editProps}>
+                {cta2.content || "See the Training"}
               </Link>
             </div>
           </Reveal>
