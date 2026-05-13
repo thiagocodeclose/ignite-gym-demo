@@ -47,13 +47,13 @@ const [iframeHeight, setIframeHeight] = useState(320);
       <div className="py-24 md:py-36">
         <div className="container-tight text-center">
           <Reveal>
-            <p className="eyebrow mb-6">Your first class is free</p>
+            <p className="eyebrow mb-6" {...ctaEyebrow.editProps}>{ctaEyebrow.content || "Your first class is free"}</p>
           </Reveal>
           <Reveal delay={0.1}>
             <h2
               className="font-heading text-white uppercase leading-none mb-4"
               style={{ fontSize: 'clamp(3.5rem, 10vw, 10rem)', fontWeight: 900, letterSpacing: '-0.02em' }}
-            >
+             {...ctaHeadline.editProps}>
               BOOK
               <br />
               <span style={{ color: 'var(--red)' }}>NOW</span>
