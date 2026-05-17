@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Reveal } from '@/components/Reveal';
-import { koriva } from '@/lib/site-data';
+import { garrison365 } from '@/lib/site-data';
 
 const formats = [
   { num: '01', name: 'TREAD + FLOOR', desc: 'Treadmill intervals + functional strength floor — 50 min' },
@@ -17,7 +17,7 @@ export function ClassesSection() {
 
   useEffect(() => {
     const handler = (e: MessageEvent) => {
-      if (e.origin !== koriva.baseUrl) return;
+      if (e.origin !== garrison365.baseUrl) return;
       const d = e.data;
       if (d?.source === 'codegym-widget' && d?.type === 'widget:resize' && d?.widget === 'schedule') {
         setIframeHeight(d.payload.height + 24);
@@ -27,7 +27,7 @@ export function ClassesSection() {
     return () => window.removeEventListener('message', handler);
   }, []);
 
-  const src = `${koriva.baseUrl}/widgets/schedule/${koriva.gymSlug}?embed=1&cg_primary=E4002B&cg_bg=0A0A0A&cg_text=F5F5F5&cg_radius=0&cg_mode=dark`;
+  const src = `${garrison365.baseUrl}/widgets/schedule/${garrison365.gymSlug}?embed=1&cg_primary=E4002B&cg_bg=0A0A0A&cg_text=F5F5F5&cg_radius=0&cg_mode=dark`;
 
   return (
     <section id="classes" className="section-padding" style={{ backgroundColor: 'var(--bg)' }}>
@@ -81,7 +81,7 @@ export function ClassesSection() {
             <iframe
               src={src}
               title="Ignite Class Schedule"
-              className="koriva-widget-frame"
+              className="garrison365-widget-frame"
               style={{ height: `${iframeHeight}px` }}
               allow="clipboard-write"
               loading="lazy"

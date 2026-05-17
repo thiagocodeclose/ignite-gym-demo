@@ -5,49 +5,49 @@ import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { studio } from "@/lib/site-data";
-import { useKorivaElement } from "@/hooks/useKorivaElement";
+import { useGarrison365Element } from "@/hooks/useGarrison365Element";
 import { useSiteData } from "@/components/SiteDataProvider";
 
 export function HeroSection() {
   const siteData = typeof useSiteData === "function" ? useSiteData() : null;
 
-  const eyebrow = useKorivaElement(
+  const eyebrow = useGarrison365Element(
     "hero_eyebrow",
     { content: "IGNITE", visible: true },
     { section: "Hero", label: "Eyebrow", type: "eyebrow" },
   );
 
-  const hl1 = useKorivaElement(
+  const hl1 = useGarrison365Element(
     "hero_headline_1",
     { content: "IGNITE", visible: true },
     { section: "Hero", label: "Headline", type: "text" },
   );
 
-  const tagline = useKorivaElement(
+  const tagline = useGarrison365Element(
     "hero_headline_2",
     { content: "Train Like It Matters.", visible: true },
     { section: "Hero", label: "Tagline", type: "text" },
   );
 
-  const subtitle = useKorivaElement(
+  const subtitle = useGarrison365Element(
     "hero_subtitle",
     { content: "Chicago's most intense HIIT and bootcamp gym.", visible: true },
     { section: "Hero", label: "Description", type: "text" },
   );
 
-  const cta1 = useKorivaElement(
+  const cta1 = useGarrison365Element(
     "hero_cta_primary",
     { content: "Book a Class", visible: true },
     { section: "Hero", label: "CTA Primary", type: "button" },
   );
 
-  const cta2 = useKorivaElement(
+  const cta2 = useGarrison365Element(
     "hero_cta_secondary",
     { content: "See the Training", visible: true },
     { section: "Hero", label: "CTA Secondary", type: "button" },
   );
 
-  const heroBg = useKorivaElement(
+  const heroBg = useGarrison365Element(
     "hero_bg",
     { content: "", mediaType: "image", visible: true },
     { section: "Hero", label: "Background Image", type: "image" },
@@ -71,8 +71,8 @@ export function HeroSection() {
         });
       }
     }
-    window.addEventListener("koriva:brand", handleBrand);
-    return () => window.removeEventListener("koriva:brand", handleBrand);
+    window.addEventListener("garrison365:brand", handleBrand);
+    return () => window.removeEventListener("garrison365:brand", handleBrand);
   }, []);
   return (
     <section

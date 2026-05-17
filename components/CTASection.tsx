@@ -2,20 +2,20 @@
 
 import { useEffect, useState } from 'react';
 import { Reveal } from '@/components/Reveal';
-import { koriva } from '@/lib/site-data';
-import { useKorivaElement } from '@/hooks/useKorivaElement';
+import { garrison365 } from '@/lib/site-data';
+import { useGarrison365Element } from '@/hooks/useGarrison365Element';
 
 export function CTASection() {
   
-  const ctaEyebrow = useKorivaElement('cta_eyebrow',
+  const ctaEyebrow = useGarrison365Element('cta_eyebrow',
     { content: 'Get Started', visible: true },
     { section: 'CTA', label: 'Eyebrow', type: 'eyebrow' });
 
-  const ctaHeadline = useKorivaElement('cta_headline',
+  const ctaHeadline = useGarrison365Element('cta_headline',
     { content: 'Your First Class Is Free', visible: true },
     { section: 'CTA', label: 'Headline', type: 'text' });
 
-  const ctaSubtitle = useKorivaElement('cta_subtitle',
+  const ctaSubtitle = useGarrison365Element('cta_subtitle',
     { content: 'No commitment. Just results.', visible: true },
     { section: 'CTA', label: 'Subtitle', type: 'text' });
 
@@ -23,7 +23,7 @@ const [iframeHeight, setIframeHeight] = useState(320);
 
   useEffect(() => {
     const handler = (e: MessageEvent) => {
-      if (e.origin !== koriva.baseUrl) return;
+      if (e.origin !== garrison365.baseUrl) return;
       const d = e.data;
       if (d?.source === 'codegym-widget' && d?.type === 'widget:resize' && d?.widget === 'lead') {
         setIframeHeight(d.payload.height + 24);
@@ -33,7 +33,7 @@ const [iframeHeight, setIframeHeight] = useState(320);
     return () => window.removeEventListener('message', handler);
   }, []);
 
-  const src = `${koriva.baseUrl}/widgets/lead_capture/${koriva.gymSlug}?embed=1&cg_primary=E4002B&cg_bg=0A0A0A&cg_text=F5F5F5&cg_radius=0&cg_mode=dark`;
+  const src = `${garrison365.baseUrl}/widgets/lead_capture/${garrison365.gymSlug}?embed=1&cg_primary=E4002B&cg_bg=0A0A0A&cg_text=F5F5F5&cg_radius=0&cg_mode=dark`;
 
   return (
     <section
@@ -73,7 +73,7 @@ const [iframeHeight, setIframeHeight] = useState(320);
               <iframe
                 src={src}
                 title="Book your first class at Ignite"
-                className="koriva-widget-frame"
+                className="garrison365-widget-frame"
                 style={{ height: `${iframeHeight}px` }}
                 allow="clipboard-write"
                 loading="lazy"

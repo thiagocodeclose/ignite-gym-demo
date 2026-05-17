@@ -73,7 +73,7 @@ export const testimonials = [
   },
 ] as const;
 
-export const koriva = {
+export const garrison365 = {
   gymSlug: 'ignite-gym',
   widgetKey: 'demo',
   baseUrl: 'https://app.codegyms.com',

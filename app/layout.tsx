@@ -2,10 +2,10 @@
 import type { Metadata } from 'next';
 import { Barlow_Condensed, Barlow } from 'next/font/google';
 import './globals.css';
-import { getKorivaConfig, buildCssVars } from '@/lib/koriva-config';
+import { getGarrison365Config, buildCssVars } from '@/lib/garrison365-config';
 import { SiteDataProvider } from '@/components/SiteDataProvider';
 
-import { KorivaLivePreview } from '@/components/KorivaLivePreview';
+import { Garrison365LivePreview } from '@/components/Garrison365LivePreview';
 const barlowCondensed = Barlow_Condensed({
   subsets: ['latin'],
   weight: ['700', '800', '900'],
@@ -27,7 +27,7 @@ const DEFAULT_TITLE = 'Ignite Gym | HIIT & Bootcamp Training · Chicago, IL';
 const DEFAULT_DESC = 'Chicago River North\'s most intense HIIT and bootcamp gym. Treadmill intervals, strength circuits, and group training. Results guaranteed or your money back.';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const config = await getKorivaConfig();
+  const config = await getGarrison365Config();
   const title = config?.seo?.title || DEFAULT_TITLE;
   const description = config?.seo?.description || DEFAULT_DESC;
   const gymName = config?.gym?.name || 'Ignite Gym';
@@ -47,12 +47,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const config = await getKorivaConfig();
+  const config = await getGarrison365Config();
   const cssVars = buildCssVars(config?.brand);
   return (
     <html lang="en" className={`${barlowCondensed.variable} ${barlow.variable}`} style={cssVars}>
       <body className="font-body antialiased">
-        <KorivaLivePreview />
+        <Garrison365LivePreview />
         <SiteDataProvider config={config}>
           {children}
         </SiteDataProvider>

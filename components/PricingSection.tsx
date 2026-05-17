@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import { Reveal } from '@/components/Reveal';
-import { koriva } from '@/lib/site-data';
+import { garrison365 } from '@/lib/site-data';
 
 export function PricingSection() {
   const [iframeHeight, setIframeHeight] = useState(520);
 
   useEffect(() => {
     const handler = (e: MessageEvent) => {
-      if (e.origin !== koriva.baseUrl) return;
+      if (e.origin !== garrison365.baseUrl) return;
       const d = e.data;
       if (d?.source === 'codegym-widget' && d?.type === 'widget:resize' && d?.widget === 'pricing') {
         setIframeHeight(d.payload.height + 24);
@@ -19,7 +19,7 @@ export function PricingSection() {
     return () => window.removeEventListener('message', handler);
   }, []);
 
-  const src = `${koriva.baseUrl}/widgets/pricing/${koriva.gymSlug}?embed=1&cg_primary=E4002B&cg_bg=0A0A0A&cg_text=F5F5F5&cg_radius=0&cg_mode=dark`;
+  const src = `${garrison365.baseUrl}/widgets/pricing/${garrison365.gymSlug}?embed=1&cg_primary=E4002B&cg_bg=0A0A0A&cg_text=F5F5F5&cg_radius=0&cg_mode=dark`;
 
   return (
     <section id="pricing" className="section-padding" style={{ backgroundColor: 'var(--bg)' }}>
@@ -52,7 +52,7 @@ export function PricingSection() {
           <iframe
             src={src}
             title="Ignite Membership"
-            className="koriva-widget-frame"
+            className="garrison365-widget-frame"
             style={{ height: `${iframeHeight}px` }}
             allow="clipboard-write"
             loading="lazy"
