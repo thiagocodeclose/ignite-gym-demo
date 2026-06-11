@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { studio } from "@/lib/site-data";
-import { useKorivaElement } from "@/hooks/useKorivaElement";
+import { useGarrison365Element as useKorivaElement } from "@/hooks/useGarrison365Element";
 import { useSiteData } from "@/components/SiteDataProvider";
 
 export function HeroSection() {
