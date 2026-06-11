@@ -5,49 +5,49 @@ import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { studio } from "@/lib/site-data";
-import { useGarrison365Element } from "@/hooks/useGarrison365Element";
+import { useKorivaElement } from "@/hooks/useKorivaElement";
 import { useSiteData } from "@/components/SiteDataProvider";
 
 export function HeroSection() {
   const siteData = typeof useSiteData === "function" ? useSiteData() : null;
 
-  const eyebrow = useGarrison365Element(
+  const eyebrow = useKorivaElement(
     "hero_eyebrow",
     { content: "IGNITE", visible: true },
     { section: "Hero", label: "Eyebrow", type: "eyebrow" },
   );
 
-  const hl1 = useGarrison365Element(
+  const hl1 = useKorivaElement(
     "hero_headline_1",
     { content: "IGNITE", visible: true },
     { section: "Hero", label: "Headline", type: "text" },
   );
 
-  const tagline = useGarrison365Element(
+  const tagline = useKorivaElement(
     "hero_headline_2",
     { content: "Train Like It Matters.", visible: true },
     { section: "Hero", label: "Tagline", type: "text" },
   );
 
-  const subtitle = useGarrison365Element(
+  const subtitle = useKorivaElement(
     "hero_subtitle",
     { content: "Chicago's most intense HIIT and bootcamp gym.", visible: true },
     { section: "Hero", label: "Description", type: "text" },
   );
 
-  const cta1 = useGarrison365Element(
+  const cta1 = useKorivaElement(
     "hero_cta_primary",
     { content: "Book a Class", visible: true },
     { section: "Hero", label: "CTA Primary", type: "button" },
   );
 
-  const cta2 = useGarrison365Element(
+  const cta2 = useKorivaElement(
     "hero_cta_secondary",
     { content: "See the Training", visible: true },
     { section: "Hero", label: "CTA Secondary", type: "button" },
   );
 
-  const heroBg = useGarrison365Element(
+  const heroBg = useKorivaElement(
     "hero_bg",
     { content: "", mediaType: "image", visible: true },
     { section: "Hero", label: "Background Image", type: "image" },
@@ -76,7 +76,7 @@ export function HeroSection() {
   }, []);
   return (
     <section
-      className="relative min-h-screen flex items-end overflow-hidden"
+      className="relative flex items-end min-h-screen overflow-hidden"
       style={{ backgroundColor: "var(--bg)" }}
     >
       {/* Background image */}
@@ -112,16 +112,18 @@ export function HeroSection() {
       <div className="relative z-10 w-full pb-20 md:pb-28">
         <div className="container-wide">
           <Reveal>
-            <p className="eyebrow mb-6" {...eyebrow.editProps}>
+            <p className="mb-6 eyebrow" {...eyebrow.editProps}>
               {studio.address.city} · {studio.address.state}
             </p>
           </Reveal>
           <Reveal delay={0.05}>
             <h1
-              className="font-heading text-white leading-none mb-6"
+              className="mb-6 leading-none text-white font-heading"
               {...hl1.editProps}
               style={{
-                fontSize: hl1.fontSize ? `${hl1.fontSize}px` : "clamp(5rem, 16vw, 18rem)",
+                fontSize: hl1.fontSize
+                  ? `${hl1.fontSize}px`
+                  : "clamp(5rem, 16vw, 18rem)",
                 fontWeight: hl1.fontWeight ? Number(hl1.fontWeight) : 900,
                 letterSpacing: "-0.02em",
                 lineHeight: 0.88,
@@ -132,11 +134,15 @@ export function HeroSection() {
           </Reveal>
           <Reveal delay={0.12}>
             <p
-              className="font-heading italic uppercase mb-10"
+              className="mb-10 italic uppercase font-heading"
               {...tagline.editProps}
               style={{
-                fontSize: tagline.fontSize ? `${tagline.fontSize}px` : "clamp(1.4rem, 4vw, 4rem)",
-                fontWeight: tagline.fontWeight ? Number(tagline.fontWeight) : 700,
+                fontSize: tagline.fontSize
+                  ? `${tagline.fontSize}px`
+                  : "clamp(1.4rem, 4vw, 4rem)",
+                fontWeight: tagline.fontWeight
+                  ? Number(tagline.fontWeight)
+                  : 700,
                 color: "var(--red)",
                 letterSpacing: "0.04em",
               }}
@@ -157,7 +163,11 @@ export function HeroSection() {
               >
                 {cta1.content || "Book a Class"}
               </Link>
-              <Link href="#about" className="btn-ghost-white" {...cta2.editProps}>
+              <Link
+                href="#about"
+                className="btn-ghost-white"
+                {...cta2.editProps}
+              >
                 {cta2.content || "See the Training"}
               </Link>
             </div>
